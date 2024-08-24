@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SearchScreen(chants: []), // chants sera chargé plus tard
+                        builder: (context) => SearchScreen(chants: jsonData), // chants sera chargé plus tard
                       ),
                     );
                   },

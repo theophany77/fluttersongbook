@@ -20,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController auteurController = TextEditingController();
   final TextEditingController diversController = TextEditingController();
 
-  List<Map<String, String>> searchResults = [];
+  List<dynamic> searchResults = [];
 
   void performSearch() {
     String numchant = numchantController.text.toLowerCase();
@@ -35,7 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
     setState(() {
       print('Recherche chants length: '+widget.chants.length.toString());
       print('Recherche chants données: '+widget.chants.toString());
-      searchResults = widget.chants.where((chant) {
+/*      searchResults = widget.chants.where((chant) {
         return  (numchant.isEmpty || (chant['Numero'] ?? '').toLowerCase().contains(numchant)) &&
             (title.isEmpty || (chant['Titre'] ?? '').toLowerCase().contains(title)) &&
             (paroles.isEmpty || (chant['Paroles'] ?? '').toLowerCase().contains(paroles)) &&
@@ -44,7 +44,9 @@ class _SearchScreenState extends State<SearchScreen> {
             (vitesse.isEmpty || (chant['Vitesse'] ?? '').toLowerCase().contains(vitesse)) &&
             (auteur.isEmpty || (chant['Auteur'] ?? '').toLowerCase().contains(auteur)) &&
             (divers.isEmpty || (chant['Divers'] ?? '').toLowerCase().contains(divers));
-      }).toList();
+      }).toList();*/
+
+      searchResults = widget.chants;
 
       // Afficher un message indiquant le nombre de résultats trouvés
       String message = searchResults.isEmpty
@@ -64,6 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('Chants trouvés: ${searchResults.map((e) => e['Titre']).toList()}');
     return Scaffold(
       appBar: AppBar(
         title: Text('Recherche multiple'),

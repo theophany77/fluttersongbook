@@ -5,39 +5,7 @@ import 'search_screen.dart';
 class ChantsListScreen extends StatelessWidget {
   final List<dynamic> chants;
 
-  //const ChantsListScreen({super.key, required this.chants});
-
   ChantsListScreen({super.key, required this.chants});
-
-  //Iterable _chants = chants.map(('Titre'));
-
-  /*[
-    {
-      "Numero": "1",
-      "Titre": "A Dieu soit la gloire",
-      "Paroles": "A Dieu soit la gloire (x3), pour les choses qu'Il a faites",
-      "Tonalite": "D",
-      "Sorte": "Louange",
-      "Vitesse": "Lent",
-      "Auteur": "USA",
-      "Divers": "ras"
-    },
-    {
-      "Numero": "2",
-      "Titre": "Jesus Iye",
-      "Paroles": "Jesus Iye, you have do it again, Jesus Iye, in your special way. What was impossible, mama, you made possible, Jesus Iye",
-      "Tonalite": "D",
-      "Sorte": "Louange",
-      "Vitesse": "Lent",
-      "Auteur": "Nathaniel Bassey",
-      "Divers": "ras"
-    }
-  ];
-*/
-
-  //String chants2='Test de ligne pour voir';
-  //List<Map<String, String>> chants2=[];
-  //chants2=chants.length;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +19,21 @@ class ChantsListScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           print('invoking itemBuilder for row ${index}');
           var _chants2 = chants[index];
+          print("type de _chants2");
+          print(_chants2.runtimeType.toString());
           return ListTile(
               leading: Text(_chants2["Numero"].toString()),
               title: Text(_chants2["Numero"].toString()),
               subtitle: Text(_chants2["Titre"].toString()),
-              trailing: Icon(Icons.arrow_right));
+              trailing: Icon(Icons.arrow_right),
+              onTap: ()=> {
+          Navigator.push(
+          context,
+          MaterialPageRoute(
+          builder: (context) => ChantDetailScreen(chant: chants[index]),
+          ),
+          ),
+          });
         });
     return Scaffold(
         appBar: AppBar(
